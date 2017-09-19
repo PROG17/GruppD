@@ -15,6 +15,7 @@ namespace SudokuProblem1
         public SudokuProblem2()
         {
             InitializeComponent();
+            this.BackColor = System.Drawing.Color.White;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -22,20 +23,22 @@ namespace SudokuProblem1
             //Kod för lätt sudoku + nytt formfönster
             Easy easy = new Easy();
             easy.Show();
-
-
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             //Kod för medium sudoku + nytt formfönster
 
+            Easy easy = new Easy();
+            easy.Show();
 
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             //Kod för svårt sudoku + nytt formfönster
+            Easy easy = new Easy();
+            easy.Show();
 
 
         }

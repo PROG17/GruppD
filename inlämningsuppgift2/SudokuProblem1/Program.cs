@@ -9,13 +9,11 @@ namespace SudokuProblem1
 {
     class Program
     {
-
         [STAThread]
         static void Main(string[] args)
         {
             //Man kan välja att göra ett val 1,2,3 där;
             // 1 är inlämning 1, 2 inlämning 2 och 3dje är inlämning 3
-
 
             Console.WriteLine("Hej välj vilket spel du vill köra:");
             Console.WriteLine("1) Sudoku lösare - Programmet löser sudoku åt dig\n2) Här väljer du svårighetsgrad och får ut sudoku du ska lösa\n" +
@@ -46,12 +44,7 @@ namespace SudokuProblem1
                         Console.WriteLine("Tyvärr. Det gick inte att lösa sudokut: ");
                         game.PrintBoard(); //För att skriva ut snyggt även om det inte gick att lösa
                     }
-
                     Console.WriteLine();
-
-
-                    Console.WriteLine("Nu kommer du att kunna lösa ett sudoku beroende på svårighetsgrad!");
-                    Console.ReadLine();
                 }
 
                 if (whatGame == 2)
@@ -66,11 +59,11 @@ namespace SudokuProblem1
                     //Kod för val nummer 3, uppgift tre's genväg ska kodas hit senare
 
                 }
-
-
+                
                 else
-
+                {
                     Console.WriteLine("Fel input");
+                }
             }
         }
     }
