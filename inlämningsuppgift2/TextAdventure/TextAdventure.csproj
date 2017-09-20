@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E9E00105-0E77-40D2-8C32-51E4DC269D8F}</ProjectGuid>
+    <ProjectGuid>{D7776DAB-DFCE-4B8E-B54B-63C4707D7340}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>SudokuProblem1</RootNamespace>
-    <AssemblyName>SudokuProblem1</AssemblyName>
+    <RootNamespace>TextAdventure</RootNamespace>
+    <AssemblyName>TextAdventure</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,9 +42,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animals.cs" />
+    <Compile Include="Apple.cs" />
+    <Compile Include="Inventory.cs" />
+    <Compile Include="Players.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sudoku.cs" />
+    <Compile Include="Rooms.cs" />
+    <Compile Include="Seeds.cs" />
+    <Compile Include="Torches.cs" />
+    <Compile Include="Water.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

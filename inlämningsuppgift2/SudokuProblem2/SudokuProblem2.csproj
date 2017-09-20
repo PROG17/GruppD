@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E9E00105-0E77-40D2-8C32-51E4DC269D8F}</ProjectGuid>
+    <ProjectGuid>{03DC4BF7-B820-43A3-9629-69FDB3296E73}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>SudokuProblem1</RootNamespace>
-    <AssemblyName>SudokuProblem1</AssemblyName>
+    <RootNamespace>SudokuProblem2</RootNamespace>
+    <AssemblyName>SudokuProblem2</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

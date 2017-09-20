@@ -4,15 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SudokuProblem1
+namespace SudokuProblem2
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hej och välkommen till Sudoku! Skriv in ditt sudoku problem: ");
-            Console.WriteLine("Varje tom cell ska skrivas som 0");
+            Console.WriteLine("Skriv in ditt svårlösta sudoku: ");
+            Console.WriteLine("037060000205000800006908000000600024001503600650009000000302700009000402000050360");
             string input = Console.ReadLine();
+
+            //==Ska jämföra input med Solve();
+            //==skrivs ut med PrintBoards()
 
             Sudoku game = new Sudoku(input);
 
@@ -32,5 +35,7 @@ namespace SudokuProblem1
 
             Console.WriteLine();
         }
+
     }
 }
+
