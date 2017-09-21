@@ -4,17 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TextAdventure
+namespace TextAdventure.AllClasses
 {
-    class Rooms
+    class Apple
     {
-        //Olika utrymmen där spelaren och bland annat djur vistas
-
-
-
-
-
-
-
     }
 }

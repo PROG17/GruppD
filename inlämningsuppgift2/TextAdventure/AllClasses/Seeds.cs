@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SudokuProblem2
+namespace TextAdventure.AllClasses
 {
-    class Apple
+    class Seeds
     {
+        //When apple is eating, you recieve seeds so you can plant later
+
     }
 }

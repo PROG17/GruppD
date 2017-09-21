@@ -8,7 +8,7 @@ namespace SudokuProblem2
 {
     class Sudoku
     {
-        private int[,,] sudokuNumbers = new int[9, 9, 10];
+        private int[,] sudokuNumbers = new int[9, 9];
 
         int numbersPlaced = 0;
         int interations = 0;
@@ -16,22 +16,23 @@ namespace SudokuProblem2
         // Konstruktor, skriv in alla givna siffror i arrayen
         public Sudoku(string sudokuProblem)
         {
-            sudokuNumbers = new int[9, 9, 10];
-            for (int i = 0; i < sudokuProblem.Length; i++)
+            sudokuNumbers = new int[9, 9];
+            for (int row = 0; row < 9; row++)
             {
-                int row = i / 9;
-                int column = i % 9;
-                int cell = i % 3;
-                if ((row < 9) && (column < 9))
+                for (int col = 0; col < 9; col++)
                 {
-                    this.sudokuNumbers[row, column, cell] = int.Parse(sudokuProblem.Substring(i, 1));
+                    sudokuNumbers[row, col] = sudokuProblem[row * 9 + col];
                 }
             }
         }
 
+        public Sudoku(int[,] sudokuProblem)
+        {
+            sudokuNumbers = (int[,])sudokuProblem.Clone();
+        }
+
         internal void PrintBoard() //utseendet från sudoku1
         {
-
             for (int row = 0; row < 9; row++)
             {
                 if (row % 3 == 0)
@@ -49,35 +50,20 @@ namespace SudokuProblem2
                     {
                         Console.Write("| ");
                     }
-                    Console.Write(sudokuNumbers[row, column, 0] + " ");
+                    Console.Write(sudokuNumbers[row, column] + " ");
                 }
 
                 Console.Write("|");
                 Console.WriteLine();
             }
+            Console.WriteLine("-------------------------");
         }
 
-        public bool Solve()
-        {
-            while (IsComplete() == false)
-            {
-                interations++;
-                numbersPlaced = 0;
 
-                PossibleNumbers();
-
-                Console.WriteLine("Antal omgångar: " + interations + "placerades totalt: " + numbersPlaced + " nummer");
-                PrintBoard();
-                Console.WriteLine();
-                LastCheck(); //För att kolla en sista gång
-            }
-
-            return IsComplete();
-        }
-
-        public bool IsComplete()
+        internal bool Solve()
         {
             bool anyNumberWritten;
+
             do
             {
                 anyNumberWritten = false;
@@ -85,232 +71,86 @@ namespace SudokuProblem2
                 {
                     for (int column = 0; column < 9; column++)
                     {
-                        for (int cell = 1; cell < 10; cell++)
+                        if (sudokuNumbers[row, column] == 0)   // Om cellen är tom
                         {
-                            if (sudokuNumbers[row, column, cell] == 0)   // if the cell is empty
-                            {
-                                CheckNums(row, column, cell);
+                            List<int> possibleValues = CalculatePossibleNumbers(row, column);
 
-                                if (sudokuNumbers[row, column, cell] == 1)
-                                {
-                                    anyNumberWritten = true;
-                                }
+                            if (possibleValues.Count == 1)    // Om exakt en siffra är möjlig i  en cell 
+                            {
+                                // Skriv in den enda möjliga siffran i cellen
+                                sudokuNumbers[row, column] = possibleValues[0];
+                                anyNumberWritten = true;
                             }
                         }
                     }
                 }
-            }
 
-            while (anyNumberWritten);
+            } while (anyNumberWritten); // Fortsätt i loopen om minst en siffra blev inskriven          
+
+            return CheckSudokuSolved();
+        }
+
+        // Denna metod kontrollerar om en array bestående av 9 heltal 
+        // innehåller siffrorna 1- 9 exakt en gång
+        private bool CheckNineIntegers(int[] nineIntegers)
+        {
+            for (int i = 1; i < 10; i++)
+            {
+                if (!(nineIntegers.Contains(i)))
+                {
+                    return false;
+                }
+            }
             return true;
-            //return CheckNums();
         }
 
-        public void PossibleNumbers()
+        // Denna metod kontrollerar om Sudokut är löst
+        private bool CheckSudokuSolved()
         {
             for (int row = 0; row < 9; row++)
             {
+                int[] numbers = new int[9];
                 for (int col = 0; col < 9; col++)
                 {
-                    if (sudokuNumbers[row, col, 0] == 0)
+                    numbers[col] = sudokuNumbers[row, col];
+                }
+                if (!CheckNineIntegers(numbers))
+                {
+                    return false;
+                }
+            }
+
+            for (int col = 0; col < 9; col++)
+            {
+                int[] numbers = new int[9];
+                for (int row = 0; row < 9; row++)
+                {
+                    numbers[row] = sudokuNumbers[row, col];
+                }
+                if (!CheckNineIntegers(numbers))
+                {
+                    return false;
+                }
+            }
+
+            for (int boxRow = 0; boxRow < 3; boxRow++)
+            {
+                for (int colRow = 0; colRow < 3; colRow++)
+                {
+                    int[] numbers = new int[9];
+                    for (int index = 0; index < 9; index++)
                     {
-                        for (int q = 1; q < 10; q++)
-                        {
-                            if (CheckNums(row, col, q))
-                                sudokuNumbers[row, col, q] = q;
-                        }
+                        int row = boxRow * 3 + index / 3;
+                        int col = colRow * 3 + index % 3;
+                        numbers[index] = sudokuNumbers[row, col];
+                    }
+                    if (!CheckNineIntegers(numbers))
+                    {
+                        return false;
                     }
                 }
             }
-            PlaceNumbers();
+            return true;
         }
-
-        public bool CheckNums(int row, int col, int cell)
-        {
-            bool possible = true;
-
-            //Kollar 3x3
-
-            if (row < 3)
-            {
-                if (col < 3)
-                {
-                    for (int i = 0; i < 3; i++)
-                    {
-                        for (int q = 0; q < 3; q++)
-                        {
-                            if (sudokuNumbers[i, q, 0] == cell)
-                                possible = false;
-                        }
-                    }
-                }
-            }
-
-            else if (col < 6)
-            {
-                for (int i = 3; i < 6; i++)
-                {
-                    for (int q = 3; q < 6; q++)
-                    {
-                        if (sudokuNumbers[i, q, 3] == cell)
-                            possible = false;
-                    }
-                }
-            }
-
-            else if (col < 9)
-            {
-                for (int i = 6; i < 9; i++)
-                {
-                    for (int q = 6; q < 9; q++)
-                    {
-                        if (sudokuNumbers[i, q, 6] == cell)
-                            possible = false;
-                    }
-                }
-            }
-
-            for (int i = 0; i < 9; i++)
-            {
-                if (sudokuNumbers[row, i, 0] == cell)
-                    possible = false;
-            }
-
-            for (int i = 0; i < 9; i++)
-            {
-                if (sudokuNumbers[i, col, 0] == cell)
-                    possible = false;
-            }
-            return possible;
-        }
-
-        public void PlaceNumbers()
-        {
-            for (int row = 0; row < 9; row++)
-            {
-                for (int col = 0; col < 9; col++)
-                {
-                    if (sudokuNumbers[row, col, 0] == 0)
-                    {
-                        int counter = 0;
-                        int place = 0;
-
-                        for (int i = 1; i < 10; i++)
-                        {
-                            if (sudokuNumbers[row, col, i] == i)
-                            {
-                                counter++;
-                                place = i;
-                            }
-                        }
-
-                        if (counter == 1)
-                        {
-                            sudokuNumbers[row, col, 0] = place;
-                            RemovePossible(row, col, place);
-                            numbersPlaced++;
-                        }
-
-                        for (int j = 1; j < 10; j++)
-                        {
-                            PlacePossibles(row, col, j);
-                        }
-                    }
-                }
-            }
-        }
-
-        public void PlacePossibles(int row, int col, int cell) //Solving the soduku
-        {
-            int counter = 0;
-            int rowPlace = 0;
-            int colPlace = 0;
-
-            if (counter == 1)
-            {
-                sudokuNumbers[rowPlace, colPlace, 0] = cell;
-                RemovePossible(rowPlace, colPlace, cell);
-                numbersPlaced++;
-            }
-
-            counter = 0;
-
-            if (sudokuNumbers[row, col, cell] == cell)
-            {
-                for (int i = 0; i < 9; i++)
-                {
-                    if (sudokuNumbers[row, i, cell] == cell)
-                    {
-                        counter++;
-                    }
-                }
-
-                if (counter == 1)
-                {
-                    sudokuNumbers[row, col, 0] = cell;
-                    RemovePossible(row, col, cell);
-                    numbersPlaced++;
-                }
-
-                counter = 0;
-
-                for (int i = 0; i < 9; i++)
-                {
-
-                    if (sudokuNumbers[i, col, cell] == cell)
-                    {
-                        counter++;
-                    }
-                }
-
-                if (counter == 1)
-                {
-                    sudokuNumbers[row, col, 0] = cell;
-                    RemovePossible(row, col, cell);
-                    numbersPlaced++;
-                }
-            }
-        }
-
-        public void RemovePossible(int row, int col, int cell) //Om det finns en siffra i en cell som det finns två av, så blir den ena 0
-        {
-            for (int i = 0; i < 9; i++)
-            {
-                if (sudokuNumbers[row, i, cell] == cell)
-                    sudokuNumbers[row, i, cell] = 0;
-            }
-
-            for (int i = 0; i < 9; i++)
-            {
-                if (sudokuNumbers[i, col, cell] == cell)
-                {
-                    sudokuNumbers[i, col, cell] = 0;
-                }
-            }
-
-            for (int q = 1; q < 10; q++)
-            {
-                sudokuNumbers[row, col, q] = 0;
-            }
-        }
-
-        public void LastCheck() //Om det fortfarande finns 0 i sudokut.
-        {
-            bool isComplete = true;
-
-            for (int row = 0; row < 9; row++)
-            {
-                for (int col = 0; col < 9; col++)
-                {
-                    RemovePossible(row, col, sudokuNumbers[row, col, 0] = 0);
-
-                    if (sudokuNumbers[row, col, 0] == 0)
-                    {
-                        isComplete = false;
-                    }
-                }
-            }
-        }
-
     }
 }

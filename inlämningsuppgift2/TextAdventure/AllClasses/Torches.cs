@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TextAdventure
+namespace TextAdventure.AllClasses
 {
-    class Seeds
+    class Torches
     {
-        //When apple is eating, you recieve seeds so you can plant later
-
+        //klass för fackla
+        //möjlighet att släcka och spara
     }
 }

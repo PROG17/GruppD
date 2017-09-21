@@ -42,16 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Animals.cs" />
-    <Compile Include="Apple.cs" />
-    <Compile Include="Inventory.cs" />
-    <Compile Include="Players.cs" />
+    <Compile Include="AllClasses\Animals.cs" />
+    <Compile Include="AllClasses\Apple.cs" />
+    <Compile Include="AllClasses\Enviroment.cs" />
+    <Compile Include="AllClasses\Inventory.cs" />
+    <Compile Include="AllClasses\Players.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rooms.cs" />
-    <Compile Include="Seeds.cs" />
-    <Compile Include="Torches.cs" />
-    <Compile Include="Water.cs" />
+    <Compile Include="AllClasses\Rooms.cs" />
+    <Compile Include="AllClasses\Seeds.cs" />
+    <Compile Include="AllClasses\Torches.cs" />
+    <Compile Include="AllClasses\Water.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
