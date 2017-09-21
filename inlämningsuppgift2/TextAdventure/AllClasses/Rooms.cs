@@ -17,6 +17,7 @@ namespace TextAdventure.AllClasses
             Föremål = "";
 
             //Det kommer alltid finnas namn på rummen, en beskrivning, alltid ett föremål.
+            //Ska läsa igenom kapitlet i boken för att skriva rätt här
 
         }
 
