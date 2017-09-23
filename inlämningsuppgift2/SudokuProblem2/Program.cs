@@ -18,7 +18,7 @@ namespace SudokuProblem2
 
             Sudoku game = new Sudoku(input);
 
-            bool result = true;
+            bool result = game.Solve();
             if (result)
             {
                 Console.WriteLine("Det gick att lösa:");
