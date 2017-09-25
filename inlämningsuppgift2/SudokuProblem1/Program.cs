@@ -4,24 +4,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace SudokuProblem1
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hej och välkommen till Sudoku! Skriv in ditt sudoku problem: ");
-            Console.WriteLine("Varje tom cell ska skrivas som 0");
-            string input = Console.ReadLine();
+            Console.WriteLine("Hej och välkommen till Sudoku 1 ! ");
+            Console.WriteLine("Det här programmet löser enkla Sudokuproblem");
+            Console.WriteLine();
+            Console.WriteLine("Skriv in ditt Sudoku problem genom att ange en siffra(1-9) för varje cell"); 
+            Console.WriteLine("Varje tom cell ska skrivas som siffran 0");
+            Console.WriteLine();
+         
 
-            Sudoku game = new Sudoku(input);
+            Sudoku game = new Sudoku(inputSudoku());
 
             bool result = game.Solve();
+            Console.WriteLine();
 
             if (result)
             {
-                Console.WriteLine("Det gick att lösa:");
-                game.PrintBoard();
+                Console.WriteLine("Det gick att lösa sudokut:");
+                game.PrintBoard(); 
             }
 
             else
@@ -34,5 +40,36 @@ namespace SudokuProblem1
 
             Console.ReadLine();
         }
+
+        // Den här metoden läser in ett Sudoku från Consolen 
+        private static string inputSudoku()
+        {
+            string inputGame = "";
+            for (int i = 1; i < 10; i++)
+            {
+                while (true)
+                {
+                    Console.Write("Skriv in siffror för dom 9 positionerna i rad {0}: ", i);
+                    string inputRow = Console.ReadLine();    
+                    
+                    if (!int.TryParse(inputRow, out int num))
+                    {
+                        Console.WriteLine("Du får bara skriva in siffror");
+                    }
+                    else if (inputRow.Length != 9)
+                    {
+                        Console.WriteLine("Du måste skriva in 9 siffror för varje rad");
+                    }
+                    else
+                    {
+                        inputGame += inputRow;
+                        break;
+                    }
+                }
+            }
+            return inputGame;
+        }
+
+        
     }
 }
