@@ -1,62 +1,39 @@
 ﻿using System;
-namespace TextAdventure.Animals
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TextAdventure.AllClasses
 {
-    public class Wolf : Animals
+    class Wolf : Animals 
+        //Ändrade lite i djuren för att kunna få ut dem i rummen. Går säkert göra på ett annat bättre sätt!!
     {
-        /*
-		public static void WolfToString()
-		{
-			Console.WriteLine("Du hör ett fruktansvärt morrande och vänder dig om, och får se en varg börja närma sig.");
-		}
 
-		public static bool WolfSolveProblem()
-		{
-			Console.WriteLine("Du skrämmer vargen med din fackla och han springer iväg, och syns aldrig till igen");
-			return false;
-		}
-
-		public static bool WolfAction()
-		{
-			Console.WriteLine("Vargen attackerar och äter dig levande!");
-			return false;
-		}
-        */
-        /*
-		public Wolf()
-		{
-			string name = "Varg";
-			string info = "Du hör ett fruktansvärt morrande och vänder dig om, och får se en varg börja närma sig.";
-			this.Name = name;
-			this.Info = info;
-		}
-		*/
-
-
-        //=============ICKE-STATIC=====================
-
-
-        public void WolfToString()
-		{
-			Console.WriteLine(Info);
-		}
-
-        public bool WolfSolveProblem()
+        public Wolf(string name)
         {
-            Console.WriteLine("Du skrämmer vargen med din fackla och han springer iväg, och syns aldrig till igen");
+            name = "Grizzlybjörn";
+            WolfToString();
+            //     this.Name = name;
+            //     this.Info = info;
+        }
+        public static bool WolfToString()
+        {
+            string info = "En enorm grizzlybjörn uppenbarar sig framför dig och börjar röra sig åt ditt håll.";
+            Console.WriteLine(info);
+            return true;
+        }
+
+        public static bool WolfSolveProblem()
+        {
+            Console.WriteLine("Grizzlybjörnen  ryggar tillbaka när han får se facklan, och lunkar iväg.");
             return false;
         }
 
-        public bool WolfAction()
+        public static bool WolfAction()
         {
-            Console.WriteLine("Vargen attackerar och äter dig levande!");
+            Console.WriteLine("Vargen biter i dig så att du dör ögonblickligen av blodförlust");
             return false;
-        }
-
-        public Wolf()
-        {
-            this.Name = "Varg";
-            this.Info = "Du hör ett fruktansvärt morrande och vänder dig om, och får se en varg börja närma sig.";
-
         }
     }
 }

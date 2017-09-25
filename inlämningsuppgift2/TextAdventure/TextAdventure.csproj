@@ -42,20 +42,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AllClasses\Animals.cs" />
-    <Compile Include="AllClasses\Apple.cs" />
-    <Compile Include="AllClasses\Enviroment.cs" />
-    <Compile Include="AllClasses\Inventory.cs" />
-    <Compile Include="AllClasses\Players.cs" />
+    <Compile Include="All Enviroments\Forest.cs" />
+    <Compile Include="All Enviroments\Garden.cs" />
+    <Compile Include="All Enviroments\MushroomOutHouse.cs" />
+    <Compile Include="All Enviroments\Rooms.cs" />
+    <Compile Include="All Enviroments\SpawningPoint.cs" />
+    <Compile Include="All Enviroments\WellGarden.cs" />
+    <Compile Include="Animals\Animals.cs" />
+    <Compile Include="Animals\Pig.cs" />
+    <Compile Include="Animals\Wolf.cs" />
+    <Compile Include="Commands.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="Items\Inventory.cs" />
+    <Compile Include="Items\Items.cs" />
+    <Compile Include="Players.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AllClasses\Rooms.cs" />
-    <Compile Include="AllClasses\Seeds.cs" />
-    <Compile Include="AllClasses\Torches.cs" />
-    <Compile Include="AllClasses\Water.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

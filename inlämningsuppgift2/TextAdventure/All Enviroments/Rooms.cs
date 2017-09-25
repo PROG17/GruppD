@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TextAdventure.AllClasses.AllEnviroments
 { //Bas klassen till alla subklasser -miljö-
-    public class Rooms
+    public class Rooms //Alla mina rum
     {
         public string Name, Description;
 
@@ -14,10 +14,9 @@ namespace TextAdventure.AllClasses.AllEnviroments
         {
             this.Name = Name;
             this.Description = Description;
-            //Det kommer alltid finnas namn på rummen, en beskrivning, alltid ett föremål.
-
-            //but if you make a superclass for all rooms, you can store different rooms in an array thanks to polymorphism
-            //List < Room > where Room is superclass of all rooms
+            ItemsInRoom = new List<Items.Items>();
         }
+
+        public List<Items.Items> ItemsInRoom { get; set; }
     }
 }

@@ -1,9 +1,13 @@
 ﻿using System;
-namespace TextAdventure.Animals
-{
-    public class Animals
-    {
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
+namespace TextAdventure.AllClasses
+{
+    public class Animals //Jens djur
+    {
         private string name;
 
         private string info;
@@ -35,12 +39,13 @@ namespace TextAdventure.Animals
         public Animals(string name, string info)
         {
             this.name = name;
-            this.info = info; 
+            this.info = info;
         }
 
         public Animals()
         {
-            
+
         }
+
     }
 }
