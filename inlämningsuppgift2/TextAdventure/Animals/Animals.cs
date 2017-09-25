@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace TextAdventure.AllClasses
 {
-    public class Animals //Jens djur
+    // Basklass för djuren
+    public class Animals
     {
         private string name;
 

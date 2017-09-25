@@ -10,30 +10,39 @@ namespace TextAdventure.AllClasses
         //Ändrade lite i djuren för att kunna få ut dem i rummen. Går säkert göra på ett annat bättre sätt!!
     {
 
+        // Återgår till gamla konstruktorn
+        /*
         public Wolf(string name)
         {
-            name = "Grizzlybjörn";
+            name = "Varg";
             WolfToString();
             //     this.Name = name;
             //     this.Info = info;
         }
+        */
         public static bool WolfToString()
         {
-            string info = "En enorm grizzlybjörn uppenbarar sig framför dig och börjar röra sig åt ditt håll.";
+            string info = "Du hör ett fruktansvärt morrande och vänder dig om, och får se en varg börja närma sig";
             Console.WriteLine(info);
             return true;
         }
 
         public static bool WolfSolveProblem()
         {
-            Console.WriteLine("Grizzlybjörnen  ryggar tillbaka när han får se facklan, och lunkar iväg.");
+            Console.WriteLine("Du skrämmer vargen med din fackla och han springer iväg, och syns aldrig till igen.");
             return false;
         }
 
         public static bool WolfAction()
         {
-            Console.WriteLine("Vargen biter i dig så att du dör ögonblickligen av blodförlust");
+            Console.WriteLine("Vargen hoppar på dig och biter så att du dör ögonblickligen!");
             return false;
+        }
+
+        public Wolf()
+        {
+            this.Name = "Varg";
+            this.Info = "Du hör ett fruktansvärt morrande och vänder dig om, och får se en varg börja närma sig.";
         }
     }
 }
