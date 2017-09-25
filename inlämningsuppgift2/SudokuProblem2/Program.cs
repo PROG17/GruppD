@@ -32,6 +32,8 @@ namespace SudokuProblem2
             }
             Console.WriteLine();
 
+            Console.ReadLine();
+
         }
     }
 }
