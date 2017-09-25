@@ -1,8 +1,9 @@
 ﻿using System;
 namespace TextAdventure.Animals
 {
-    public class Pig //: Animals
+    public class Pig : Animals
     {
+        /*
 		public static void PigToString()
 		{
 			
@@ -22,7 +23,7 @@ namespace TextAdventure.Animals
 			Console.WriteLine("Vildsvinet rör sig mot dig och knuffar bort dig från området.");
 			return false;
 		}
-
+*/
         /*
 		public Pig()
 		{
@@ -36,10 +37,9 @@ namespace TextAdventure.Animals
 		*/
 
         //==========ICKE-STATIC==================
-        /*
+
         public void PigToString()
         {
-            Console.WriteLine();
             Console.WriteLine(Info);
         }
 
@@ -58,13 +58,12 @@ namespace TextAdventure.Animals
 
         public Pig()
         {
-            string name = "Vildsvin";
-            string info = "Ett aggresivt vildsvin står framför dig. " + "\n" +
+            this.Name = "Vildsvin";
+            this.Info = "Ett aggresivt vildsvin står framför dig. " + "\n" +
                 "Han verkar väldigt hungrig och har ingenting att äta." + "\n";
 
-            this.Name = name;
-            this.Info = info;
+
         }
-        */
+
     }
 }

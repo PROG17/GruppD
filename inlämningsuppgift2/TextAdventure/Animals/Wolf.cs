@@ -1,8 +1,9 @@
 ﻿using System;
 namespace TextAdventure.Animals
 {
-    public class Wolf //: Animals
+    public class Wolf : Animals
     {
+        /*
 		public static void WolfToString()
 		{
 			Console.WriteLine("Du hör ett fruktansvärt morrande och vänder dig om, och får se en varg börja närma sig.");
@@ -19,7 +20,7 @@ namespace TextAdventure.Animals
 			Console.WriteLine("Vargen attackerar och äter dig levande!");
 			return false;
 		}
-
+        */
         /*
 		public Wolf()
 		{
@@ -33,10 +34,9 @@ namespace TextAdventure.Animals
 
         //=============ICKE-STATIC=====================
 
-        /*
+
         public void WolfToString()
 		{
-			Console.WriteLine();
 			Console.WriteLine(Info);
 		}
 
@@ -54,11 +54,9 @@ namespace TextAdventure.Animals
 
         public Wolf()
         {
-            string name = "Varg";
-            string info = "Du hör ett fruktansvärt morrande och vänder dig om, och får se en varg börja närma sig.";
-            this.Name = name;
-            this.Info = info;
+            this.Name = "Varg";
+            this.Info = "Du hör ett fruktansvärt morrande och vänder dig om, och får se en varg börja närma sig.";
+
         }
-        */
     }
 }
