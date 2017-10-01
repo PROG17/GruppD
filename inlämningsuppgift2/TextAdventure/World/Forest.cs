@@ -1,0 +1,60 @@
+﻿using System;
+using System.Collections.Generic;
+namespace TextAdventure.World
+{
+    public class Forest : Rooms
+    {
+        /*
+        List<Animals.Wolf> listOfAnimals = new List<Animals.Wolf>();
+
+        public List<Animals.Wolf> ListOfAnimals
+        {
+            get
+            {
+                return listOfAnimals;
+            }
+            set
+            {
+                listOfAnimals = value;
+            }
+        }
+        */
+       public override void ToScreen()
+        {
+            Console.WriteLine(Description);
+
+            if (!ListOfAnimals.Contains(GameSession.wolf))
+            {
+                foreach (var item in ListOfItems)
+                {
+                    if (item == GameSession.manure)
+                    {
+                        Console.WriteLine("Det ligger en hög med [gödsel]  på marken. Utmärkt som näring till växter vid plantering.");
+
+                    }
+                    else
+                    {
+                        Console.WriteLine(item.Name + ": " + item.Description);
+                    }
+                }
+            }
+            else if (ListOfAnimals.Contains(GameSession.wolf))
+            {
+                GameSession.wolf.ToScreen();
+
+            }
+        }
+
+        public Forest(/*GameData.Items manure, */Animals.Wolf wolf, Exits north)
+        {
+            this.Name = "Skog";
+            this.Description = "Du står i en skogsdunge med en mörk och tät skog omkring dig.\n" +
+                "Åt [Söder] leder en väg tillbaka till ängen.";
+            //this.ListOfItems.Add(manure);
+            this.ListOfAnimals.Add(wolf);
+            this.ListOfExists.Add(north);
+        }
+
+
+    }
+}
