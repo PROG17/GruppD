@@ -266,8 +266,8 @@ namespace TextAdventure
                                     Console.WriteLine("\nEfter att ha vattnat planteringen börjar ett träd att växa.\n" +
                                         "Du klättrar upp till toppen och tittar på utsikten.\n" +
                                         "\n============ DU HAR VUNNIT ==================\n");
-
-                                    Console.ReadLine();
+                                  
+                                    Thread.Sleep(10000);
                                     runCommand = false;
                                     GameSession.gameSessionIsRunning = false;
                                 }
