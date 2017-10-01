@@ -48,13 +48,7 @@ namespace TextAdventure
 
             
 
-            Console.Beep();
-            Console.WriteLine("\n<<<<<<<<<< THE FOREST WATCHER >>>>>>>>>>");
-            Thread.Sleep(2000);
-            Console.WriteLine();
-            Console.WriteLine("\n<<<<< A GROUP D PRODUCTION TM 2017 >>>>>");
-            Thread.Sleep(5000);
-            Console.Clear();
+            
 
             Console.Write("Ange namn på spelaren: ");
             GameData.Player.playerName = Console.ReadLine();
