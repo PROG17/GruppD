@@ -7,19 +7,10 @@ namespace TextAdventure
     {
         public static void Main(string[] args)
         {
-
+            // Startar en ny spelomgång
             GameSession newGame = new GameSession();
 
-
             
-
-
-            
-
-            
-
-
-
         }
     }
 }

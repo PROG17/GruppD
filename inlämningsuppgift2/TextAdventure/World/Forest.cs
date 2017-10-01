@@ -4,21 +4,7 @@ namespace TextAdventure.World
 {
     public class Forest : Rooms
     {
-        /*
-        List<Animals.Wolf> listOfAnimals = new List<Animals.Wolf>();
-
-        public List<Animals.Wolf> ListOfAnimals
-        {
-            get
-            {
-                return listOfAnimals;
-            }
-            set
-            {
-                listOfAnimals = value;
-            }
-        }
-        */
+        
        public override void ToScreen()
         {
             Console.WriteLine(Description);

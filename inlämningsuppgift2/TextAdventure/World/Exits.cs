@@ -34,9 +34,7 @@ namespace TextAdventure.World
                 description = value;
             }
         }
-        //public string Name { get; set; }
-
-        //public string Description { get; set; }
+        
 
         public Exits(string name, string description)
         {

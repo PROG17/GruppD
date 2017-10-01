@@ -13,55 +13,40 @@ namespace TextAdventure
 
         public static string ExecuteCommand()
         {
-            //Commands baserade på rörelse (go, north, south, ....)
-
+            
+            // Vilket värde som returneras till Switchen som styr rummen.
             string exitValue = "";
 
+            // Styr loopen
             bool runCommand = true;
 
-
+            // Printar användarens val
             GameData.Player.PlayerCommands();
-            /*
-            Console.WriteLine("SPELARE: " + GameData.Player.playerName);
-            Console.WriteLine("SPELVAL: [GÅ...] [ANVÄND...på...] [TA...] [SLÄPP...] [KOMBINERA...med...] [INSPEKTERA...] [UTFORSKA] [VÄSKA]");
-            Console.WriteLine();
-            */
-
-            /*
-            //TEMPORÄR////////
-            foreach (var item in GameData.Player.inventoryList)
-            {
-                Console.WriteLine(item.Name);
-            }
-            */
-
-            //Console.WriteLine(GameSession.currentRoom.Description);
+           
+            // Skriver ut miljön
             GameSession.currentRoom.ToScreen();
             Console.WriteLine();
 
 
-            /*
-            foreach (var item in GameSession.currentRoom.ListOfItems)
-            {
-                Console.WriteLine(item.Name);
-            }
-            */
-
+            // Loop som håller användaren kvar i aktuella miljön
             while (runCommand)
             {
-
+                // Läser in användarens input
                 string command = Console.ReadLine().ToUpper();
 
+                // Splittar upp inmatningen i array för att bättre kunna kontrolleras
                 string[] commandArray = command.Split(' ');
 
+                // Läser in vilket kommando användaren angett
                 string action = commandArray[0];
 
-
+                // Väljer vad som ska göras
                 switch (action)
                 {
                     case "GÅ":
                         if (commandArray.Length == 2)
                         {
+                            // Kollar att vägen är möjlig att gå
                             if ((GameSession.currentRoom.ListOfExists.Exists(items => items.Name.ToUpper() == commandArray[1])))
                             {
                                 foreach (var item in GameSession.currentRoom.ListOfExists)
@@ -87,31 +72,15 @@ namespace TextAdventure
                         else
                         {
                             Console.WriteLine("\nDu kan bara ange ett vädersträck");
-                            /*
-                            Console.Write("\nDu kan bara gå: ");
-                            for (int i = 0; i < GameSession.currentRoom.ListOfExists.Count; i++)
-                            {
-                                Console.Write(GameSession.currentRoom.ListOfExists[i].Name);
-                                if(i-1 < GameSession.currentRoom.ListOfExists.Count)
-                                {
-                                    Console.Write(" eller ");
-                                }
-                            }
-                            */
-                            /*
-                            foreach (var item in GameSession.currentRoom.ListOfExists)
-                            {
-                                Console.Write(item.Name + " ");
-                                
-                            }
-                            Console.WriteLine();
-                            */
+                            
                         }
 
 
                         break;
 
                     case "TA":
+                        // Kollar längden på inmatningen
+                        // Här kollas olika alternativ kring att ta upp items
                         if (commandArray.Length == 2)
                         {
                             if (GameSession.currentRoom == GameSession.garden && commandArray[1] == "PLANTERINGSYTA")
@@ -150,6 +119,7 @@ namespace TextAdventure
                     case "SLÄPP":
                         if (commandArray.Length == 2)
                         {
+                            // Kollar att man har det items man försöker släppa
                             if (GameData.Player.inventoryList.Exists(items => items.Name.ToUpper() == commandArray[1])) //Har problem med scope på currentLocation
                             {
                                 int indexNr = GameData.Player.inventoryList.FindIndex(items => items.Name.ToUpper() == commandArray[1]);
@@ -177,6 +147,7 @@ namespace TextAdventure
                     case "ANVÄND":
                         if (commandArray.Length > 3 && commandArray.Length == 4)
                         {
+                            // Om rummet är Brunnen
                             if (GameSession.currentRoom == GameSession.well)
                             {
                                 if ((GameData.Player.inventoryList.Exists(items => items.Name.ToUpper() == commandArray[1])) &&
@@ -208,6 +179,7 @@ namespace TextAdventure
                                 }
                             }
 
+                            // Om rummet är skogen
                             else if (GameSession.currentRoom == GameSession.forest)
                             {
                                 if ((GameData.Player.inventoryList.Exists(items => items.Name.ToUpper() == commandArray[1])) &&
@@ -230,6 +202,8 @@ namespace TextAdventure
                                 }
 
                             }
+
+                            // Om rummet är trädgården
                             else if (GameSession.currentRoom == GameSession.garden)
                             {
                                 if ((GameData.Player.inventoryList.Exists(items => items.Name.ToUpper() == commandArray[1])) &&
@@ -300,7 +274,9 @@ namespace TextAdventure
                         }
                         break;
 
+
                     case "KOMBINERA":
+                        // Kollar kombinationsmöjligheterna
                         if (commandArray.Length == 4)
                         {
                             if ((GameData.Player.inventoryList.Exists(items => items.Name.ToUpper() == commandArray[1])) &&
@@ -329,6 +305,7 @@ namespace TextAdventure
                         break;
 
                     case "INSPEKTERA":
+                        // Ger en närmare beskrivning på angiven sak.
                         if (commandArray.Length == 2)
                         {
                             foreach (var item in GameData.Player.inventoryList)
@@ -355,6 +332,7 @@ namespace TextAdventure
                         break;
 
                     case "UTFORSKA":
+                        // Printar en miljöbeskrivning
                         if (commandArray.Length == 1)
                         {
                             Console.Clear();
@@ -377,6 +355,7 @@ namespace TextAdventure
                         break;
 
                     case "VÄSKA":
+                        // Printar ens inventory
                         Console.WriteLine("\nDINA SAKER I VÄSKAN:");
                         foreach (var item in GameData.Player.inventoryList)
                         {
@@ -394,135 +373,6 @@ namespace TextAdventure
 
             return exitValue;
         }
-
-        /*
-        public Commands(string command) //kolla så att strängen som skickas in är ToUpper.
-        {
-
-
-        }
-        */
-
-        /*
-                if (command.Substring(0, 2) == "GÅ") //kolla gå
-            {
-                if (command.ToUpper() == "GÅ") //bara gå
-                {
-                    Console.WriteLine("Du måste ange en riktning");
-                }
-                if (command.Length > 2) //gå + nått mer, kanske dumt skrivet men om det inte är en riktning så kommer den ändå inte finnas i exits-listan.
-                {
-                    foreach (Exits exit in GameSession.currentRoom.ListOfExists) //Har problem med scope på currentLocation
-                    {
-
-                        if (command == exit.Name) //om command är lika med någon möjlig exit för rummet (behöver nog inte ToString då name är en sträng?
-                        {
-                                exitValue = exit.Name;
-                                runCommand = false;
-                                
-                            //Om vi har en desciption för exits så borde den hamna här innan vi går till nästa rum.
-                            //GameSession.currentRoom = ;
-                            //osäker på hur det här ska skrivas men det borde vara här som nuvarande rum byts mot det nya rummet?
-                            //clear console och skriv ut nya rummet? Ska koppla in Exits här med utvägar         
-                        }
-
-                    }
-                }
-            }
-
-
-            //Commands baserade kring items (använd, plocka upp, släpp, kombinera)
-
-            if (command.Substring(0, 6) == "ANVÄND")
-            {
-                if (command == "ANVÄND")
-                {
-                    Console.WriteLine("Du måste specifiera ett objekt");
-                }
-                if (GameData.Player.inventoryList.Exists(items => items.Name == command.ToUpper()))
-                {
-                    Console.WriteLine();
-                }
-                else
-                {
-
-                }
-            }
-            if (command.Substring(0, 10) == "PLOCKA UPP") //Antagligen fel siffra för Substring
-            {
-                if (command == "PLOCKA UPP")
-                {
-                    Console.WriteLine("Du måste specifiera ett objekt");
-                }
-                if (GameSession.currentRoom.ListOfItems.Exists(items => items.Name == command)) //Har problem med scope på currentLocation
-                {
-                    Console.WriteLine("Något vi vill ska stå när saker plockas upp");
-                    // Items.Inventory.inventoryList.Add(); lägga till item i player-inv.
-                    //Room.listOfItems.Add(Det som togs upp); ta bort item i plats-inv.
-
-                }
-                else
-                {
-                    Console.WriteLine("Det finns inget i rummet som heter så");
-                    //if item in room < 0;  skriv ut att det inte finns något att plocka upp
-                }
-            }
-            if (command.Substring(0, 5) == "SLÄPP") //Antagligen fel siffra för Substring
-            {
-                if (command == "SLÄPP")
-                {
-                    Console.WriteLine("Du måste specifiera ett objekt");
-                }
-                if (GameData.Player.inventoryList.Exists(items => items.Name == command)) //Antagligen fel siffra för Substring
-                {
-                    Console.WriteLine();
-
-                    char removeChar = ' ';
-
-                    for (int i = 0; i < GameData.Player.inventoryList.Count; i++)
-                    {
-                        if (GameData.Player.inventoryList[i].Name == command.Substring(4).TrimStart(removeChar).TrimEnd(removeChar))
-                        {
-                            GameSession.currentRoom.ListOfItems.Add(GameData.Player.inventoryList[i]);
-                            GameData.Player.inventoryList.RemoveAt(i);
-
-                        }
-                    }
-
-                    //lägga till item i currentLocation-inv.
-                    //ta bort item i player-inv.
-                }
-                else
-                {
-                    //annars så har man inte objektet man försöker släppa?
-                }
-            }
-                if (command.Substring(0, 9) == "KOMBINERA") //Antagligen fel siffra för Substring
-                {
-                    if (command == "KOMBINERA") //om bara kombinera
-                    {
-                        Console.WriteLine("Du måste ange två objekt som du vill kombinera");
-                    }
-                    else
-                    {
-                        List<GameData.Items> itemsToCombine = new List<GameData.Items>();
-
-                        foreach (var item in GameData.Player.inventoryList)
-                        {
-                            if (GameData.Player.inventoryList.Exists(items => items.Name == command))
-                            {
-                                itemsToCombine.Add(item);
-                            }
-                        }
-                        if (itemsToCombine.Count == 2)
-                        {
-                            //använd combine metoden från gamla inventory klassen.
-                        }
-                        else //om det inte är 2 items som spelaren försöker kombinera
-                        {
-                            Console.WriteLine("Dessa går inte att kombinera");
-                        }
-                    }
-                }*/
+        
     }
 }

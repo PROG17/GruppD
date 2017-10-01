@@ -77,13 +77,6 @@ namespace TextAdventure.World
         {
 
         }
-        /*
-        public Rooms(string description, string item)
-        {
-            this.description = description;
-
-            itemList.Add(item);
-        }
-        */
+        
     }
 }

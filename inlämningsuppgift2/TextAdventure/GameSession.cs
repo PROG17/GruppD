@@ -5,7 +5,7 @@ namespace TextAdventure
 {
     public class GameSession
     {
-
+        // Spelinnehållet skapas
         public static World.Exits exitNorth = new World.Exits("NORR", "Du går norrut.");
         public static World.Exits exitSouth = new World.Exits("SÖDER", "Du går söderut.");
         public static World.Exits exitWest = new World.Exits("VÄST", "Du går västerut.");
@@ -43,7 +43,9 @@ namespace TextAdventure
 
         public void PlayGame()
         {
+
             
+
             Console.Write("Ange namn på spelaren: ");
             GameData.Player.playerName = Console.ReadLine();
 
@@ -56,6 +58,7 @@ namespace TextAdventure
             {
                 Console.Clear();
 
+                // Här väljs vilken miljö man befinner sig i.
                 switch (currentRoom.Name)
                 {
                     case "Hus":

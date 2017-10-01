@@ -4,22 +4,7 @@ namespace TextAdventure.World
 {
     public class Well : Rooms
     {
-        /*
-        List<Animals.Pig> listOfAnimals = new List<Animals.Pig>();
-    
-
-        public List<Animals.Pig> ListOfAnimals
-        {
-            get
-            {
-                return listOfAnimals;
-            }
-            set
-            {
-                listOfAnimals = value;
-            }
-        }
-        */
+        
 
         public override void ToScreen()
         {
