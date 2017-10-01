@@ -43,13 +43,7 @@ namespace TextAdventure
 
         public void PlayGame()
         {
-
-
-
             
-
-            
-
             Console.Write("Ange namn på spelaren: ");
             GameData.Player.playerName = Console.ReadLine();
 
